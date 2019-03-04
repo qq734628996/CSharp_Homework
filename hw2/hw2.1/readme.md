@@ -3,4 +3,4 @@
 
 **思路**：如题
 
-**结果**：![avatar](pic/res.png)
+**结果**：![Alt text](pic/res.png)
