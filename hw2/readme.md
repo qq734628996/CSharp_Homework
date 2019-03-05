@@ -1,4 +1,4 @@
-# 实例化 HelloWorld
+# 2.1 实例化 HelloWorld
 **作业要求**：创建新的类，实例化 HelloWorld
 
 **思路**：如题，并添加了命令行参数
@@ -7,7 +7,7 @@
 
 ![Alt text](hw2.1/pic/res.png)
 
-# 创建新的类，静态方法，无需实例化的 HelloWorld
+# 2.2 创建新的类，静态方法，无需实例化的 HelloWorld
 **作业要求**：rt
 
 **思路**：由作业2.1简单修改得到
@@ -16,7 +16,7 @@
 
 ![Alt text](hw2.2/pic/res.png)
 
-# WPF的HelloWorld
+# 2.3 WPF的HelloWorld
 ## 题目要求
 rt
 ## 思路 & 结果
@@ -28,7 +28,7 @@ rt
 2. 一个是textblock控件，用于显示文字，顺便改了下字体和大小
 3. 还有一个是把窗口名字改成了**HelloWPF**
 
-# WindowsForm，中创建新类的HelloWorld
+# 2.4 WindowsForm，中创建新类的HelloWorld
 又是拖控件……
 
 先放图：
@@ -44,7 +44,7 @@ rt
 
 ![](hw2.4/pic/res.gif)
 
-# Xamarin Android HelloWorld 或IOS/Mac OS HelloWorld
+# 2.5 Xamarin Android HelloWorld 或IOS/Mac OS HelloWorld
 又双叒叕是拖控件……不过这次好难啊，我都快哭了
 
 参考[官网教程](https://docs.microsoft.com/en-us/xamarin/android/get-started/hello-android/hello-android-quickstart?pivots=windows)
