@@ -1,0 +1,13 @@
+﻿<Window x:Class="HelloWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HelloWPF"
+        mc:Ignorable="d"
+        Title="HelloWPF" Height="450" Width="800">
+    <Grid>
+        <Image Source="Resources\1.jpeg" Stretch="Fill"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,64,0,0" TextWrapping="Wrap" Text="落霞与孤鹜齐飞秋水共长天一色" VerticalAlignment="Top" Height="84" Width="256" FontFamily="KaiTi" FontSize="36"/>
+    </Grid>
+</Window>
