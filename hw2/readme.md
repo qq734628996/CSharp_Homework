@@ -45,7 +45,7 @@ rt
 ![](hw2.4/pic/res.gif)
 
 ## windowsform helloworld v2.0
-![](hw2.4 v2.0/pic/res.png)
+![]("hw2.4 v2.0/pic/res.png")
 
 ## 2.5 Xamarin Android HelloWorld 或IOS/Mac OS HelloWorld
 又双叒叕是拖控件……不过这次好难啊，我都快哭了
