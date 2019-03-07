@@ -29,6 +29,7 @@ rt
 3. 还有一个是把窗口名字改成了**HelloWPF**
 
 ## 2.4 WindowsForm，中创建新类的HelloWorld
+### windowsform helloworld v1.0
 又是拖控件……
 
 先放图：
@@ -44,7 +45,7 @@ rt
 
 ![](hw2.4/pic/res.gif)
 
-## windowsform helloworld v2.0
+### windowsform helloworld v2.0
 ![](hw2.4%20v2.0/pic/res.png)
 
 ## 2.5 Xamarin Android HelloWorld 或IOS/Mac OS HelloWorld
