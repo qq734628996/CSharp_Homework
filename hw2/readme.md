@@ -1,5 +1,18 @@
-* auto-gen TOC:
-{:toc}
+## TOC
+
+<!-- TOC -->
+
+- [2.1 实例化 HelloWorld](#21-实例化-helloworld)
+- [2.2 创建新的类，静态方法，无需实例化的 HelloWorld](#22-创建新的类静态方法无需实例化的-helloworld)
+- [2.3 WPF的HelloWorld](#23-wpf的helloworld)
+    - [题目要求](#题目要求)
+    - [思路 & 结果](#思路--结果)
+- [2.4 WindowsForm，中创建新类的HelloWorld](#24-windowsform中创建新类的helloworld)
+    - [windowsform helloworld v1.0](#windowsform-helloworld-v10)
+    - [windowsform helloworld v2.0](#windowsform-helloworld-v20)
+- [2.5 Xamarin Android HelloWorld 或IOS/Mac OS HelloWorld](#25-xamarin-android-helloworld-或iosmac-os-helloworld)
+
+<!-- /TOC -->
 
 ## 2.1 实例化 HelloWorld
 **作业要求**：创建新的类，实例化 HelloWorld
