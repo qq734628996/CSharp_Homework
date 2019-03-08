@@ -1,5 +1,3 @@
-[TOC]
-
 ## 2.1 实例化 HelloWorld
 **作业要求**：创建新的类，实例化 HelloWorld
 
