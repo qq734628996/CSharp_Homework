@@ -52,6 +52,7 @@ This is an easy-to-use qrcode generator.
 | MyQrCode.cs | 61 |
 | total | 410 |
 | readme | 150+ |
+| report | 19P |
 
 ### **四、工作时间**
 
