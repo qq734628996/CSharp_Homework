@@ -18,6 +18,8 @@ This is an easy-to-use qrcode generator.
 下面是实验报告
 ============
 
+（我尝试了html和css的语法，都未能修改在github网页上显示的字体。路径下readme.pdf是我在本地预览的样子。）
+
 <center>
 <font size="6" face="SimHei">
 《C#控制台编程》实验报告
