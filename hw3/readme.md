@@ -7,7 +7,7 @@
 
 ## Result
 
-![](video\sample.gif)
+![](pic\sample.gif)
 
 Fix a bug: `System.NullReferenceException`, since `selectedRadio` may be null: 
 
