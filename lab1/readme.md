@@ -10,15 +10,15 @@ This is an easy-to-use qrcode generator.
 - [**四、工作时间**](#四工作时间)
 - [**五、知识点总结图（Concept MAP）**](#五知识点总结图concept-map)
 - [**六、结论**](#六结论)
-    - [1.5.1 实验过程](#151-实验过程)
-    - [1.5.2 实验结果](#152-实验结果)
+    - [实验过程](#实验过程)
+    - [实验结果](#实验结果)
 
 <!-- /TOC -->
 
+（我尝试了html和css的语法，都未能修改在github网页上显示的字体。路径下readme.pdf是我在本地预览的样子。）
+
 下面是实验报告
 ============
-
-（我尝试了html和css的语法，都未能修改在github网页上显示的字体。路径下readme.pdf是我在本地预览的样子。）
 
 <center>
 <font size="6" face="SimHei">
@@ -26,7 +26,9 @@ This is an easy-to-use qrcode generator.
 </font>
 <br/>
 <font size="4" face="SimSun" color="black">
-学院：软件学院 班级：1班 学号：3017218061 姓名：刘坤鑫 日期：2019年3月19日
+学院：智能与计算学部 班级：1班<br>
+学号：3017218061 姓名：刘坤鑫<br>
+日期：2019年3月19日
 </font>
 </center>
 
@@ -35,7 +37,7 @@ This is an easy-to-use qrcode generator.
 ![](pic/1.png)
 
 - 实现了实验的所有要求。
-- 更详细的功能介绍，参考[实验结果](#152-实验结果)。
+- 更详细的功能介绍，参考[实验结果](#实验结果)。
 - **最详细的功能介绍，都写在注释里了。**
 
 ### **二、项目特色**
@@ -56,7 +58,7 @@ This is an easy-to-use qrcode generator.
 
 ### **四、工作时间**
 
-三天
+五天
 
 ### **五、知识点总结图（Concept MAP）**
 
@@ -64,7 +66,7 @@ This is an easy-to-use qrcode generator.
 
 ### **六、结论**
 
-#### 1.5.1 实验过程
+#### 实验过程
 
 整个实验过程中可谓一波三折，疲惫时感觉心力交瘁，完成时感觉意犹未尽。整个实验过程可以归结为百度谷歌不断学习不断DEBUG的过程。
 
@@ -76,6 +78,7 @@ This is an easy-to-use qrcode generator.
 4. 读取excel文件时不能读取相对路径。
 4. 尝试根据文件二进制信息识别文件类型，不过放弃了，因为网上代码不一致。
 5. 数据库操作都是现学现卖。。
+7. 修改github上markdown字体未遂
 
 由于时间关系并且实验没有要求，一些其他的拓展并没有实现：
 
@@ -84,7 +87,7 @@ This is an easy-to-use qrcode generator.
 3. --delimiter，用户可以指定文本的界定符。
 4. excel和mysql指定读取哪些内容。
 
-#### 1.5.2 实验结果
+#### 实验结果
 
 用户仅输入
 
