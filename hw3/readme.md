@@ -7,7 +7,7 @@
 
 ## Result
 
-![](https://github.com/qq734628996/CSharp_hw/blob/master/hw3/pic/sample.gif)
+![](video/sample.gif)
 
 Fix a bug: `System.NullReferenceException`, since `selectedRadio` may be null: 
 
