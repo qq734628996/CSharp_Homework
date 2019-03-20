@@ -20,17 +20,14 @@ This is an easy-to-use qrcode generator.
 下面是实验报告
 ============
 
-<center>
-<font size="6" face="SimHei">
+<h1 style="font-family:SimHei;font-size:29px;text-align:center">
 《C#控制台编程》实验报告
-</font>
-<br/>
-<font size="4" face="SimSun" color="black">
-学院：智能与计算学部 班级：1班<br>
-学号：3017218061 姓名：刘坤鑫<br>
+</h1>
+<h2 style="font-family:SimSun;font-size:21px;text-align:center">
+学院：智能与计算学部 班级：1班<br/>
+学号：3017218061 姓名：刘坤鑫<br/>
 日期：2019年3月19日
-</font>
-</center>
+</h2>
 
 ### **一、功能概述**
 
