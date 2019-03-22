@@ -314,9 +314,9 @@ namespace SequencerDemo
             asc.controlAutoSize(this);
         }
 
-        private void Form1_DragEnter(object sender, DragEventArgs e) //获得“信息”
+        private void Form1_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop)) //重要代码：表明是所有类型的数据，比如文件路径
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effect = DragDropEffects.All;
             }
@@ -326,10 +326,10 @@ namespace SequencerDemo
             }
         }
 
-        private void Form1_DragDrop(object sender, DragEventArgs e) //解析信息
+        private void Form1_DragDrop(object sender, DragEventArgs e)
         {
-            string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0]; //获得路径
-            Open(fileName); //调用midi内部方法打开midi文件
+            string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+            Open(fileName);
         }
 
         #endregion
