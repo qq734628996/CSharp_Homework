@@ -10,7 +10,7 @@ Build a Desktop WPF APP. For its functions refer to the video [ABSWP81Part9_ Tip
 
 Fix a bug: `System.NullReferenceException`, since `selectedRadio` may be null: 
 
-``` csc
+``` c#
 if (selectedRadio != null)
 {
     

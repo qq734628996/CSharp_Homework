@@ -88,7 +88,7 @@ This is an easy-to-use qrcode generator.
 
 用户仅输入
 
-```
+``` shell
 > MyQrCode
 ```
 
@@ -98,7 +98,7 @@ This is an easy-to-use qrcode generator.
 
 用户输入文本：
 
-```
+``` shell
 > MyQrCode CONTENT
 ```
 
@@ -112,7 +112,7 @@ This is an easy-to-use qrcode generator.
 
 用户输入：
 
-```
+``` shell
 > MyQrCode -s
 ```
 
@@ -130,7 +130,7 @@ This is an easy-to-use qrcode generator.
 
 用户键入：
 
-```
+``` shell
 > MyQrCode -f sample.txt
 ```
 
@@ -140,7 +140,7 @@ This is an easy-to-use qrcode generator.
 
 读取excel文件与读取文本文件类似：
 
-```
+``` shell
 > MyQrCode -f sample.xlsx
 ```
 
@@ -148,7 +148,9 @@ This is an easy-to-use qrcode generator.
 
 用户键入
 
-    > MyQrCode -f
+``` shell
+> MyQrCode -f
+```
 
 提示输入input file
 
