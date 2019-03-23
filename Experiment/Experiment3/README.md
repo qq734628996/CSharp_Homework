@@ -43,7 +43,7 @@
 
 在`StackPanel`外面套上一个`Viewbox`即可，不仅图案而且字体也自适应变化。
 
-``` html
+``` xml
 <Viewbox VerticalAlignment="Top">
     <StackPanel HorizontalAlignment="Center">
         ...
