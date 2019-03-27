@@ -2,8 +2,6 @@ This is an easy-to-use qrcode generator.
 
 这是一款简单易用的二维码生成器。
 
-<!-- TOC -->
-
 - [**一、功能概述**](#一功能概述)
 - [**二、项目特色**](#二项目特色)
 - [**三、代码总量**](#三代码总量)
@@ -13,21 +11,26 @@ This is an easy-to-use qrcode generator.
     - [实验过程](#实验过程)
     - [实验结果](#实验结果)
 
-<!-- /TOC -->
+~~（我尝试了html和css的语法，都未能修改在github网页上显示的字体。路径下readme.pdf是我在本地预览的样子。）~~
 
-（我尝试了html和css的语法，都未能修改在github网页上显示的字体。路径下readme.pdf是我在本地预览的样子。）
+发现使用旧html语法能改变位置:smile:
 
 下面是实验报告
 ============
 
-<h1 style="font-family:SimHei;font-size:29px;text-align:center">
+<h1 align="center">
+<font size="6" face="SimHei" color="black">
 《C#控制台编程》实验报告
+</font>
 </h1>
-<h2 style="font-family:SimSun;font-size:21px;text-align:center">
+<h2 align="center">
+<font size="4" face="SimSun" color="black">
 学院：智能与计算学部 班级：1班<br/>
 学号：3017218061 姓名：刘坤鑫<br/>
 日期：2019年3月19日
+</font>
 </h2>
+
 
 ### **一、功能概述**
 
