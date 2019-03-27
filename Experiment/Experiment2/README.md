@@ -97,6 +97,6 @@ private void Form1_DragDrop(object sender, DragEventArgs e) //解析信息
 
 >一图胜千言<br>A beautiful demo is worth a thousand words
 
-注：video路径下res.mkv，更高的画质、1/10的体积于res.gif
-
 ![](pic/res.gif)
+
+注：原视频为video路径下res.mkv。

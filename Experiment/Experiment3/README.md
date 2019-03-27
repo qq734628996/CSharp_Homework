@@ -59,6 +59,6 @@
 
 >一图胜千言<br>A beautiful demo is worth a thousand words
 
-注：video路径下的res.mkv文件，1/2的速率、4倍的分辨率、更高的画质、1/3.6的体积于res.gif。
-
 ![](pic/res.gif)
+
+注：原视频为video路径下的res.mkv。
