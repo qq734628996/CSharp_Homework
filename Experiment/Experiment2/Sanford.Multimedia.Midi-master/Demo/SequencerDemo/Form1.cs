@@ -379,16 +379,16 @@ namespace SequencerDemo
             //}
             //startButton_Click(sender, e);
             //调用播放事件
-            try
-            {
-                playing = true;
-                sequencer1.Start();
-                timer1.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
+            //try
+            //{
+            //    playing = true;
+            //    sequencer1.Start();
+            //    timer1.Start();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //}
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)

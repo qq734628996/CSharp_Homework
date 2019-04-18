@@ -122,14 +122,12 @@ namespace WPFMidiBand
                 }
             }
         }
-
         protected override void OnClosing(CancelEventArgs e)
         {
             closing = true;
 
             base.OnClosing(e);
         }
-
         protected override void OnClosed(EventArgs e)
         {
             sequence1.Dispose();
@@ -143,12 +141,10 @@ namespace WPFMidiBand
 
             base.OnClosed(e);
         }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void HandleLoadProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.Dispatcher.Invoke(
@@ -161,7 +157,6 @@ namespace WPFMidiBand
                     )
             );
         }
-
         private void HandleLoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             this.Title = string.Format("WPF Midi Band - {0}", new FileInfo(fileName).Name);
@@ -200,8 +195,6 @@ namespace WPFMidiBand
             sequencer1.Start();
             timer1.Start();
         }
-
-
         private void HandleChannelMessagePlayed(object sender, ChannelMessageEventArgs e)
         {
             if (closing)
@@ -284,7 +277,6 @@ namespace WPFMidiBand
                 }
             }
         }
-
         private void HandleChased(object sender, ChasedEventArgs e)
         {
             foreach (ChannelMessage message in e.Messages)
@@ -292,12 +284,10 @@ namespace WPFMidiBand
                 outDevice.Send(message);
             }
         }
-
         private void HandleSysExMessagePlayed(object sender, SysExMessageEventArgs e)
         {
             outDevice.Send(e.Message); //Sometimes causes an exception to be thrown because the output device is overloaded.
         }
-
         private void HandleStopped(object sender, StoppedEventArgs e)
         {
             foreach (ChannelMessage message in e.Messages)
@@ -305,7 +295,6 @@ namespace WPFMidiBand
                 outDevice.Send(message);
             }
         }
-
         private void HandlePlayingCompleted(object sender, EventArgs e)
         {
             var cArray = new string(' ', 88).ToCharArray();
@@ -366,6 +355,7 @@ namespace WPFMidiBand
                 }
             }
 
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(playNext));
 
             //var fret = "||";
             //var id = 0;
@@ -389,7 +379,6 @@ namespace WPFMidiBand
             //    sequence1.LoadAsync(fileName);
             //}
         }
-
         private void pianoControl1_PianoKeyDown(object sender, PianoKeyEventArgs e)
         {
             #region Guard
@@ -403,7 +392,6 @@ namespace WPFMidiBand
 
             outDevice.Send(new ChannelMessage(ChannelCommand.NoteOn, 0, e.NoteID, 127));
         }
-
         private void pianoControl1_PianoKeyUp(object sender, PianoKeyEventArgs e)
         {
             #region Guard
@@ -417,7 +405,6 @@ namespace WPFMidiBand
 
             outDevice.Send(new ChannelMessage(ChannelCommand.NoteOff, 0, e.NoteID, 0));
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!scrolling)
@@ -425,7 +412,6 @@ namespace WPFMidiBand
                 slider1.Value = sequencer1.Position;
             }
         }
-
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
             if (openMidiFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -463,7 +449,6 @@ namespace WPFMidiBand
             }
 
         }
-
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -478,7 +463,6 @@ namespace WPFMidiBand
                 System.Windows.Forms.MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -493,7 +477,6 @@ namespace WPFMidiBand
                 System.Windows.Forms.MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -507,18 +490,15 @@ namespace WPFMidiBand
                 System.Windows.Forms.MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-
         private void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             //if (!dragStarted)
             //    sequencer1.Position = (int)e.NewValue;
         }
-
         private void slider1_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             this.dragStarted = true;
         }
-
         private void slider1_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             sequencer1.Position = (int)((Slider)sender).Value;
@@ -528,45 +508,172 @@ namespace WPFMidiBand
 
         #region MyRegion
 
+        private int count;               //当前播放的歌曲
+        FileInfo[] playlist;             //保存歌曲路径信息
+        Dictionary<string, int> songid;  //保存歌曲在playlist里的id
+        private bool sequential = true;  //全局变量表示当前是否顺序随机播放
+        private Random rd = new Random();
+
+        /// <summary>
+        /// 拖拽一个midi文件进行播放或者一个文件夹进行播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Drop(object sender, System.Windows.DragEventArgs e)
         {
             if (e.Data.GetDataPresent(System.Windows.Forms.DataFormats.FileDrop))
             {
-                string fileName = ((string[])e.Data.GetData(System.Windows.Forms.DataFormats.FileDrop))[0]; //获得路径
+                fileName = ((string[])e.Data.GetData(System.Windows.Forms.DataFormats.FileDrop))[0]; //获得路径
 
-                //调用midi内部方法打开midi文件
-                try
-                {
-                    sequencer1.Stop();
-                    playing = false;
-                    sequence1.LoadAsync(fileName);
-                    this.Cursor = System.Windows.Input.Cursors.Wait;
-                    btnStart.IsEnabled = false;
-                    btnContinue.IsEnabled = false;
-                    btnStop.IsEnabled = false;
-                    btnOpen.IsEnabled = false;
-
-                    this.Dispatcher.Invoke(
-                        System.Windows.Threading.DispatcherPriority.Normal,
-                            new Action(
-                            delegate ()
-                            {
-                                Storyboard sbClockOpen = (Storyboard)FindResource("sbClockOpen");
-                                grdClock.Visibility = System.Windows.Visibility.Visible;
-                                sbClockOpen.Begin();
-                            }
-                        )
-                    );
-
+                if (Directory.Exists(fileName)) //路径
+                {   //保存曲目信息
+                    playlist = new DirectoryInfo(fileName).GetFiles("*.mid");
+                    songid = new Dictionary<string, int>();
+                    listView.Items.Clear();
+                    for (int i = 0; i < playlist.Length; i++)
+                    {
+                        string name = System.IO.Path.GetFileNameWithoutExtension(playlist[i].FullName);
+                        string fullname = playlist[i].FullName;
+                        listView.Items.Add(name);
+                        songid[name] = i;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                else if (File.Exists(fileName)) //文件
+                {   //保存曲目信息
+                    playlist = new FileInfo[1];
+                    playlist[0] = new FileInfo(fileName);
+                    songid = new Dictionary<string, int>();
+                    string name = System.IO.Path.GetFileNameWithoutExtension(fileName);
+                    string fullname = fileName;
+                    listView.Items.Clear();
+                    listView.Items.Add(name);
+                    songid[name] = 0;
                 }
+
+                //播放下一首
+                count = sequential ? 0 : rd.Next(0, playlist.Length - 1);
+                playNext();
             }
+        }
+        /// <summary>
+        /// 将内部打开midi文件的方法封装成一个open方法
+        /// </summary>
+        private void Open()
+        {
+            try
+            {
+                sequencer1.Stop();
+                playing = false;
+                sequence1.LoadAsync(fileName);
+                this.Cursor = System.Windows.Input.Cursors.Wait;
+                btnStart.IsEnabled = false;
+                btnContinue.IsEnabled = false;
+                btnStop.IsEnabled = false;
+                btnOpen.IsEnabled = false;
+
+                this.Dispatcher.Invoke(
+                    System.Windows.Threading.DispatcherPriority.Normal,
+                        new Action(
+                        delegate ()
+                        {
+                            Storyboard sbClockOpen = (Storyboard)FindResource("sbClockOpen");
+                            grdClock.Visibility = System.Windows.Visibility.Visible;
+                            sbClockOpen.Begin();
+                        }
+                    )
+                );
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+        /// <summary>
+        /// 播放下一首曲目
+        /// </summary>
+        private void playNext()
+        {
+            listView.SelectedIndex = count;              //播放列表对当前播放曲目进行高亮
+            fileName = playlist[count].FullName;         //调用原有方法打开midi文件进行播放
+            Open();
+            if (sequential)                              //下一首取决于当前播放模式
+            {
+                count = (count + 1) % playlist.Length;
+            }
+            else
+            {
+                count = rd.Next(0, playlist.Length - 1);
+            }
+        }
+        /// <summary>
+        /// //展开或隐藏播放列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hidePlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            if (listView.Visibility == Visibility.Visible)
+            {
+                listView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                listView.Visibility = Visibility.Visible;
+            }
+        }
+        /// <summary>
+        /// 点击打开一个文件夹进行播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog(); //文件夹打开对话框
+            folderDialog.Description = "Open playlist";
+
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string folderPath = folderDialog.SelectedPath;            //保存midi文件信息
+                // http://www.cnblogs.com/willingtolove/p/9235353.html
+                playlist = new DirectoryInfo(folderPath).GetFiles("*.mid");
+                songid = new Dictionary<string, int>();
+                listView.Items.Clear();
+                for (int i = 0; i < playlist.Length; i++)
+                {
+                    string name = System.IO.Path.GetFileNameWithoutExtension(playlist[i].FullName);
+                    string fullname = playlist[i].FullName;
+                    listView.Items.Add(name);
+                    songid[name] = i;
+                }
+                //根据当前播放模式播放下一首
+                count = sequential ? 0 : rd.Next(0, playlist.Length - 1);
+                playNext();
+            }
+        }
+        /// <summary>
+        /// 点击在顺序播放和随机播放模式之间进行切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRandom_Click(object sender, RoutedEventArgs e)
+        {
+            sequential = !sequential;
+            btnRandom.Content = sequential ? "sequential" : "random";
+        }
+        /// <summary>
+        /// 可双击曲目进行播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            count = songid[listView.SelectedItem.ToString()];
+            this.Dispatcher.BeginInvoke(new Action(playNext));
         }
 
         #endregion
+
 
     }
 

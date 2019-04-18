@@ -45,12 +45,30 @@
         
         
     </Window.Resources>
-    <Grid Margin="10">
-        <Grid>
-            <Viewbox VerticalAlignment="Top">
+
+
+    <Viewbox VerticalAlignment="Top">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="listView" Grid.Column="1" Background="#FF170303" Foreground="#FFB65708" Visibility="Collapsed" MouseDoubleClick="listView_MouseDoubleClick" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="playlist"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Grid Grid.Column="0">
                 <StackPanel HorizontalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -60,9 +78,12 @@
                         <Button x:Name="btnStop" Content="Stop" Grid.Column="1" Click="btnStop_Click" IsEnabled="False" />
                         <Button x:Name="btnStart" Content="Start" Grid.Column="2" Click="btnStart_Click" IsEnabled="False"/>
                         <Button x:Name="btnContinue" Content="Continue" Grid.Column="3" Click="btnContinue_Click" IsEnabled="False"/>
+                        <Button x:Name="btnPlaylist" Content="playlist" Grid.Column="4" Click="btnPlaylist_Click"/>
+                        <Button x:Name="btnRandom" Content="sequential" Grid.Column="5" Click="btnRandom_Click"/>
+                        <Button x:Name="hidePlaylist" Content="..." Grid.Column="6" Click="hidePlaylist_Click"/>
                     </Grid>
                     <Slider x:Name="slider1" Minimum="0" Maximum="100" LargeChange="10" ValueChanged="slider1_ValueChanged"
-                            Thumb.DragStarted="slider1_DragStarted" Thumb.DragCompleted="slider1_DragCompleted"/>
+                        Thumb.DragStarted="slider1_DragStarted" Thumb.DragCompleted="slider1_DragCompleted"/>
 
                     <ctrl:PianoControlWPF x:Name="pianoControl1" Margin="0,10,0,0" HorizontalAlignment="Left">
                         <ctrl:PianoControlWPF.RenderTransform>
@@ -83,38 +104,39 @@
                     </ctrl:DrumControl>
 
                 </StackPanel>
-            </Viewbox>
-            
-            <Grid x:Name="grdClock" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
-                <Grid.RenderTransform>
-                    <ScaleTransform CenterX="50" CenterY="50" ScaleX="1" ScaleY="1"/>
-                </Grid.RenderTransform>
-                <Ellipse Width="100" Height="100" Stroke="#FF000000" Fill="#FFFFFFFF" StrokeThickness="8">
-                </Ellipse>
-                <Ellipse Width="100" Height="100" Stroke="#FFFFFFFF" StrokeThickness="1">
-                </Ellipse>
-                <Line X1="50" Y1="50" X2="50" Y2="15" Stroke="Black" StrokeThickness="8" StrokeStartLineCap="Round" StrokeEndLineCap="Triangle">
-                    <Line.RenderTransform>
-                        <RotateTransform x:Name="needleRotation" CenterX="50" CenterY="50" Angle="0"/>
-                    </Line.RenderTransform>
-                </Line>
-                <Ellipse Width="50" Height="30" Margin="0,-50,0,0">
-                    <Ellipse.Fill>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0.0" Color="#FFC0C0C0"/>
-                            <GradientStop Offset="1.0" Color="#00C0C0C0"/>
-                        </LinearGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Width="50" Height="30" Margin="0,50,0,0" Stroke="Transparent">
-                    <Ellipse.Fill>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0.0" Color="#00D0D0D0"/>
-                            <GradientStop Offset="1.0" Color="#FF808080"/>
-                        </LinearGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
+
+
+                <Grid x:Name="grdClock" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+                    <Grid.RenderTransform>
+                        <ScaleTransform CenterX="50" CenterY="50" ScaleX="1" ScaleY="1"/>
+                    </Grid.RenderTransform>
+                    <Ellipse Width="100" Height="100" Stroke="#FF000000" Fill="#FFFFFFFF" StrokeThickness="8">
+                    </Ellipse>
+                    <Ellipse Width="100" Height="100" Stroke="#FFFFFFFF" StrokeThickness="1">
+                    </Ellipse>
+                    <Line X1="50" Y1="50" X2="50" Y2="15" Stroke="Black" StrokeThickness="8" StrokeStartLineCap="Round" StrokeEndLineCap="Triangle">
+                        <Line.RenderTransform>
+                            <RotateTransform x:Name="needleRotation" CenterX="50" CenterY="50" Angle="0"/>
+                        </Line.RenderTransform>
+                    </Line>
+                    <Ellipse Width="50" Height="30" Margin="0,-50,0,0">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0.0" Color="#FFC0C0C0"/>
+                                <GradientStop Offset="1.0" Color="#00C0C0C0"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Width="50" Height="30" Margin="0,50,0,0" Stroke="Transparent">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0.0" Color="#00D0D0D0"/>
+                                <GradientStop Offset="1.0" Color="#FF808080"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
 </Window>
