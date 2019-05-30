@@ -1,0 +1,137 @@
+﻿<Window x:Class="midi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:midi"
+        xmlns:wpf="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:zed="clr-namespace:ZedGraph;assembly=ZedGraph"
+        mc:Ignorable="d"
+        Title="Arduino Serial Port Visualizer"
+        Height="480"
+        Width="720" 
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <ToolBarTray Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top">
+            <ToolBar Header="Setting" BandIndex="1">
+                <ComboBox x:Name="comboBoxPort"  
+                          ToolBar.OverflowMode="Always"
+                          DropDownOpened="ComboBoxPort_DropDownOpened"
+                          MinWidth="100"/>
+                <ComboBox x:Name="comboBoxBaud" 
+                          ToolBar.OverflowMode="Always"
+                          MinWidth="100"/>
+            </ToolBar>
+            <ToolBar BandIndex="2">
+                <Button x:Name="buttonOpenClose" 
+			            Content="Open" 
+			            Click="ButtonOpenClose_Click"
+			            MinWidth="50"/>
+            </ToolBar>
+            <ToolBar BandIndex="3" Header="LED">
+                <StackPanel Orientation="Horizontal" ToolBar.OverflowMode="Always">
+                    <Label Width="50" Content="Red:"/>
+                    <Slider VerticalAlignment="Center" 
+                            Width="150" 
+                            IsSnapToTickEnabled="True"
+                            Tag="Red"
+                            ValueChanged="Slider_ValueChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolBar.OverflowMode="Always">
+                    <Label Width="50" Content="Green:"/>
+                    <Slider VerticalAlignment="Center" 
+                            Width="150" 
+                            IsSnapToTickEnabled="True"
+                            Tag="Green"
+                            ValueChanged="Slider_ValueChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolBar.OverflowMode="Always">
+                    <Label Width="50" Content="Yellow:"/>
+                    <Slider VerticalAlignment="Center" 
+                            Width="150" 
+                            IsSnapToTickEnabled="True"
+                            Tag="Yellow"
+                            ValueChanged="Slider_ValueChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolBar.OverflowMode="Always">
+                    <Label Width="50" Content="Blue:"/>
+                    <Slider VerticalAlignment="Center" 
+                            Width="150" 
+                            IsSnapToTickEnabled="True"
+                            Tag="Blue"
+                            ValueChanged="Slider_ValueChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolBar.OverflowMode="Always">
+                    <Label Width="50" Content="White:"/>
+                    <Slider VerticalAlignment="Center" 
+                            Width="150" 
+                            IsSnapToTickEnabled="True"
+                            Tag="White"
+                            ValueChanged="Slider_ValueChanged"/>
+                </StackPanel>
+                <Label x:Name="LabelMixRGB"
+                       ToolBar.OverflowMode="Always"
+                       Content="Mixed RGB color" 
+                       Width="200"
+                       HorizontalContentAlignment="Center"
+                       FontWeight="Bold"/>
+
+            </ToolBar>
+            <ToolBar BandIndex="4">
+                <Button x:Name="btnPlot"
+                        Content="PlotStart"
+                        Click="BtnPlot_Click"/>
+                <TextBox x:Name="textBoxSetPeriod" 
+                         ToolBar.OverflowMode="Always" 
+                         MinWidth="100"/>
+                <Button x:Name="btnSetPeriod"
+                        ToolBar.OverflowMode="Always"
+                        Content="SetPeriod" 
+                        Click="BtnSetPeriod_Click"/>
+                <Button x:Name="btnPlotClear"
+                        ToolBar.OverflowMode="Always"
+                        Content="PlotClear"
+                        Width="163"
+                        Click="BtnPlotClear_Click"/>
+            </ToolBar>
+            <ToolBar BandIndex="5">
+                <Button x:Name="buttonLog" 
+                        Content="LogStart"
+			            Click="ButtonLog_Click"/>
+            </ToolBar>
+            <ToolBar BandIndex="6">
+                <TextBox x:Name="dataToSend" MinWidth="100"/>
+                <Button x:Name="buttonSendData" 
+                        Content="Send"
+                        Click="ButtonSendData_Click"/>
+            </ToolBar>
+            
+        </ToolBarTray>
+
+        <wpf:WindowsFormsHost Grid.Row="1">
+            <wpf:WindowsFormsHost.Child>
+                <zed:ZedGraphControl x:Name="zedgraph" />
+            </wpf:WindowsFormsHost.Child>
+        </wpf:WindowsFormsHost>
+
+        <StatusBar x:Name="statusBarMidiData" Grid.Row="2">
+            <Label Content="Port:"/>
+            <TextBlock x:Name="textBlockStatus" Text="Close" Width="35" />
+            <Label Content="Data sent:"/>
+            <TextBlock x:Name="textBlockDataSent" Text="00 00 00" Width="52"/>
+            <Label Content="Data received:"/>
+            <TextBlock x:Name="textBlockDataRecv" Text="00 00 00" Width="52"/>
+            <TextBlock x:Name="textBlockRealData" Text="" Width="45"/>
+            <Label Content="T(°):"/>
+            <TextBlock x:Name="textBlockNTC" Width="30"/>
+            <Label Content="Lux(x10):"/>
+            <TextBlock x:Name="textBlockRCDS" Width="30"/>
+        </StatusBar>
+    </Grid>
+</Window>
