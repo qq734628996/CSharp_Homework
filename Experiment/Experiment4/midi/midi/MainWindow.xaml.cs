@@ -251,7 +251,7 @@ namespace midi
                 textBlockDataSent.Text = dataSent.DataString; //更新绑定
                 if (isLog) //更新log
                 {
-                    logData.sent.Add(string.Format("#FF{0:X2}{1:X2}{2:X2}",
+                    logData.sent.Add(string.Format("{0:X2}{1:X2}{2:X2}",
                         data[0],
                         data[1],
                         data[2]));
